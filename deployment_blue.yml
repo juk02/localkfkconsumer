@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-blue
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: pod-consumer
+      color: blue
+    template:
+      metadata:
+        labels:
+          app: pod-consumer
+          color: blue
+        sped:
+          containers:
+            - name: pod-consumer
+              image: localhost:5000/localconsumer:0.0.1
+              ports:
+                - containerPort: 8224
